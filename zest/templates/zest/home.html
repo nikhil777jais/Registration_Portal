@@ -1,0 +1,45 @@
+{% extends 'zest/base.html' %}
+{% load static %}
+{% block message %}
+
+{% endblock message %}
+{% block content %}
+  <div class="row justify-content-between mt-5">
+    <div class="col-md-4">
+      <div class="card text-center">
+        <div class="card-header">
+          <img src="{% static 'zest/images/1_avatar-512.webp' %}" class="card-img-top" alt="reistration image">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title ">Register Individual</h5>
+          <p class="card-text ">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-color">Click Here</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center">
+        <div class="card-header">
+          <img src="{% static 'zest/images/bootwise-icon-02.png' %}" class="card-img-top" alt="reistration image">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Register team</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-color">Click Here</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center">
+        <div class="card-header">
+          <img src="{% static 'zest/images/reistration.png' %}" class="card-img-top" alt="reistration image">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Registration For Event</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-color">Click Here</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
