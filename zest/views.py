@@ -2,7 +2,7 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from zest.models import Pid 
+from zest.models import Pid,Tid
 from zest.forms import Sign_up_form, log_in_form
 from . forms import Generate_Pid_form
 from django.contrib.auth.models import Group
@@ -99,3 +99,18 @@ def search_pid_by_roll(request, roll_no):
     pid  = Pid.objects.filter(roll_no=roll_no)[0]
     return render(request,'zest/pid_info.html', {'pid':pid})
       
+@login_required(login_url='/zest/login/')
+def generate_tid(request):
+  tid = Tid()
+  tid.save()
+  return HttpResponseRedirect('/zest/add_pid_in_tid/{0}'.format(tid.id))
+
+@login_required(login_url='/zest/login/')
+def add_pid_in_tid(request,tid):
+  tid_obj = Tid.objects.get(id=tid)
+  if request.method == "POST":
+    pid1 = request.POST.get('pid',False)
+    tid_obj.pid.add(pid1)
+    return render(request,'zest/tid_info.html',{'tid_obj':tid_obj})
+  else:    
+    return render(request,'zest/tid_info.html',{'tid_obj':tid_obj})

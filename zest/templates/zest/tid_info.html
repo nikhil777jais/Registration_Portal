@@ -1,0 +1,33 @@
+{% extends 'zest/base.html' %}
+{% load static %}
+{% block message %}
+<div class="container text-white">
+  <div class="row">
+    <div class="col-md-12 mt-3">
+      {% if messages %}
+      {% for message in messages %}
+      <div {% if message %} class="alert alert-{{message.tags}}" {% endif %}role="alert">
+        <h3>{{message}}</h3>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock message %}
+{% block content %}
+  {% if tid_obj %}
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-5 p-0 text-dark ">          
+           <form action="{% url 'add_pid_in_tid' tid_obj.id %}" method="POST" class="form-inline" novalidate>
+              {% csrf_token %}
+              <label for="pid"><b>Add PID</b></label>
+              <input class="form-control mx-sm-2" type="search" placeholder="Enter PID" name="pid" aria-label="Add Pid">
+              <button class="btn btn-color my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock content %}

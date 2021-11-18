@@ -1,5 +1,7 @@
+from django.db.models import fields
+from django.db.models.base import Model
 from django.forms import widgets
-from . models import Pid
+from . models import Pid, Tid
 from django import forms 
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
