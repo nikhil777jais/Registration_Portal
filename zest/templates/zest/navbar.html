@@ -19,6 +19,10 @@
           <li class="nav-item">
             <a class="nav-link">Developer</a>
           </li>
+          {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link " href="{% url 'logout' %}">Logout</a>
+          </li>  
           <li class="nav-item">
             <form action="{% url 'search_pid' %}" method="POST" class="form-inline" novalidate>
               {% csrf_token %}
@@ -26,6 +30,14 @@
               <button class="btn btn-nav my-2 my-sm-0" type="submit">Search</button>
             </form>
           </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link " href="{% url 'signup' %}">Signup</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{% url 'login' %}">Login</a>
+          </li>
+          {% endif %}
         </ul>
       </div>
     </nav>
