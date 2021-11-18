@@ -62,8 +62,16 @@ def generate_pid(request):
   if request.method == "POST":
     fm = Generate_Pid_form(request.POST)
     if fm.is_valid():
-      fm.save()
+      name = fm.cleaned_data['name']
+      college_name = fm.cleaned_data['college_name']
       roll_no = fm.cleaned_data['roll_no']
+      batch = fm.cleaned_data['batch']
+      course = fm.cleaned_data['course']
+      branch = fm.cleaned_data['branch']
+      phone = fm.cleaned_data['phone']
+      current_user = request.user
+      pid = Pid(name=name,college_name=college_name,roll_no=roll_no,batch=batch,course=course,branch=branch,phone=phone,generated_by=current_user)
+      pid.save()
       return HttpResponseRedirect('/zest/search_pid/{0}'.format(roll_no))
   else:
     fm = Generate_Pid_form()
@@ -88,6 +96,6 @@ def search_pid(request):
 @login_required(login_url='/zest/login/')
 def search_pid_by_roll(request, roll_no):
   if roll_no:
-      pid  = Pid.objects.filter(roll_no=roll_no)[0]
-      return render(request,'zest/pid_info.html', {'pid':pid})
+    pid  = Pid.objects.filter(roll_no=roll_no)[0]
+    return render(request,'zest/pid_info.html', {'pid':pid})
       
