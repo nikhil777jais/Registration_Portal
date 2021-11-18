@@ -1,3 +1,6 @@
 from django.contrib import admin
+from . models import Pid
 
-# Register your models here.
+@admin.register(Pid)
+class PidAdmin(admin.ModelAdmin):
+    list_display = ['id','name', 'roll_no',]

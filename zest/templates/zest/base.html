@@ -7,7 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'zest/css/bootstrap.css' %}">
-  <link rel="stylesheet" href="{% static 'zest/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'zest/css/core.css' %}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
   <title>{% block title %}{% endblock title %}</title>
 </head>
 
@@ -15,17 +16,19 @@
   <script src="{% static 'zest/js/jquery.js' %}"></script>
   <script src="{% static 'zest/js/popper.js' %}"></script>
   <script src="{% static 'zest/js/bootstrap.js' %}"></script>
-  <div class="container-fluid px-0">
-    {% include 'zest/navbar.html' %}
-  </div>
-  <div class="container px-0">
-    {% block message %}
-
-    {% endblock message %}
-    {% block content %}
-
-    {% endblock content %}
+  <div class="container-fluid nav_bg px-0">
+    <div class="container">
+      {% include 'zest/navbar.html' %}
     </div>
+  </div>
+  {% block message %}
+
+  {% endblock message %}
+  {% block content %}
+
+  {% endblock content %}
+  <div class="">
+      {% include 'zest/footer.html' %}
   </div>
 </body>
 </html>

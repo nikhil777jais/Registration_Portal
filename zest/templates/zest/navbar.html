@@ -1,14 +1,15 @@
 <div class="row">
-  <div class="col-md-12">
-    <nav class="navbar navbar-expand-lg navbar-dark nav_bg">
+  <div class="col-md-12 py-1">
+    <nav class="navbar navbar-expand-lg navbar-dark">
       <img src="https://www.iconpacks.net/icons/2/free-icon-pin-location-4346.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
-      <a class="navbar-brand" href="#">Zest Theme</a>
+      <a class="navbar-brand" href="{% url 'home' %}">Zest Theme</a>
+      
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav ml-auto ">
           <li class="nav-item">
             <a class="nav-link">Events</a>
           </li>
@@ -17,6 +18,13 @@
           </li>
           <li class="nav-item">
             <a class="nav-link">Developer</a>
+          </li>
+          <li class="nav-item">
+            <form action="{% url 'search_pid' %}" method="POST" class="form-inline" novalidate>
+              {% csrf_token %}
+              <input class="form-control mx-sm-2" type="search" placeholder="Enter Roll Number" name="roll_no" aria-label="Search">
+              <button class="btn btn-nav my-2 my-sm-0" type="submit">Search</button>
+            </form>
           </li>
         </ul>
       </div>
