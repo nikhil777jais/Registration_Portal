@@ -18,14 +18,48 @@
 {% block content %}
   {% if tid_obj %}
     <div class="container">
-      <div class="row justify-content-center">
+      <div class="row justify-content-center d-print-none">
         <div class="col-md-5 p-0 text-dark ">          
-           <form action="{% url 'add_pid_in_tid' tid_obj.id %}" method="POST" class="form-inline" novalidate>
-              {% csrf_token %}
-              <label for="pid"><b>Add PID</b></label>
-              <input class="form-control mx-sm-2" type="search" placeholder="Enter PID" name="pid" aria-label="Add Pid">
-              <button class="btn btn-color my-2 my-sm-0" type="submit">Search</button>
-            </form>
+          <form action="{% url 'add_pid_in_tid' tid_obj.id %}" method="POST" class="form-inline" novalidate>
+            {% csrf_token %}
+            <label for="pid"><b>Add PID</b></label>
+            <input class="form-control mx-sm-2" type="search" placeholder="Enter PID" name="pid" aria-label="Add Pid">
+            <button class="btn btn-color my-2 my-sm-0" type="submit">Add PID</button>
+          </form>
+        </div>
+      </div>
+      <div class="container mt-3 bg-white">
+        <div class="row justify-content-center text-center mb-4">
+          <div class="col-md-9 ">
+            <img src="{% static 'zest/images/q.png' %}" class="rounded mx-auto py-3 d-block" width=35% alt="srmslogo">
+          </div>
+          <div class="text-theme">
+            <h5>SHRI RAM MURTI SMARAK COLLEGE OF ENGINEERNING AND TECHNOLOGY,BAREILLY</h5>
+            <h5>Ram Murti Puram, Bareilly - Nainital Rd, Highway, Bhoji Pura, Uttar Pradesh 243202</h5>
+            <h4 class="pt-2"><b>Zest 2021 Rgistration Details</b></h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-hover table-bordered bg-white ">
+              <tbody>
+                <tr>
+                  <th class="align-middle py-2" width=5% scope="row">TID</th>
+                  <td class="align-left py-2" width=30%>{{tid_obj.id}}</td>
+                </tr>
+                <tr>
+                  <th class="align-middle py-2" width=5% scope="row">PID</th>
+                  <td class="align-left py-2" width=30%>
+                  {% for pid in tid_obj.pid.all %}
+                    {{pid.id}}, 
+                  {% endfor %}  
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-6">
+          </div>
         </div>
       </div>
     </div>

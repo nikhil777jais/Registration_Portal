@@ -12,10 +12,11 @@ def validate_phone(value):
 
 COLLEGE_CHOICES =	(
 	('SRMS CET', 'SRMS CET'),
-  ('SRMS CERT', 'SRMS UNNAO'),
+  ('SRMS CERT', 'SRMS CETR'),
   ('SRMS UNNAO', 'SRMS UNNAO'),
   ('SRMS IMS', 'SRMS IMS'),
   ('SRMS NURSING', 'SRMS NURSING'),
+  ('OTHER', 'OTHER'),
 )
 COURSE_CHOICES = (
   ('B.Tech.', 'B.Tech.'),
@@ -57,6 +58,7 @@ class Pid(models.Model):
 
 class Tid(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
+    college_name = CharField(choices=COLLEGE_CHOICES, max_length=100,  help_text='Select College')
     pid = models.ManyToManyField(Pid, blank=True, related_name= 'pids')
     
     @property

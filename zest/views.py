@@ -3,8 +3,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from zest.models import Pid,Tid
-from zest.forms import Sign_up_form, log_in_form
-from . forms import Generate_Pid_form
+from zest.forms import Sign_up_form, log_in_form, Generate_Pid_form, Generate_Tid_form
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -101,16 +100,46 @@ def search_pid_by_roll(request, roll_no):
       
 @login_required(login_url='/zest/login/')
 def generate_tid(request):
-  tid = Tid()
-  tid.save()
-  return HttpResponseRedirect('/zest/add_pid_in_tid/{0}'.format(tid.id))
+  if request.method == "POST":
+    fm = Generate_Tid_form(request.POST)
+    if fm.is_valid():
+      college_name = fm.cleaned_data['college_name']
+      tid = Tid(college_name=college_name)
+      tid.save()
+      return HttpResponseRedirect('/zest/add_pid_in_tid/{0}'.format(tid.id))
+  else:
+    fm =Generate_Tid_form()
+    return render(request, 'zest/generate_tid.html', {'form':fm})
 
 @login_required(login_url='/zest/login/')
-def add_pid_in_tid(request,tid):
+def search_tid(request):
+  fm = Generate_Tid_form()
+  tid = request.POST.get('tid', False)
+  if tid:
+    try:
+      tid_obj  = Tid.objects.get(id=tid)
+      return render(request,'zest/tid_info.html', {'tid_obj':tid_obj})
+    except Exception as e:
+      messages.error(request, 'Either tid is incorrect or it is not registered.')
+      return render(request,'zest/generate_tid.html',{'form':fm})     
+  else:
+    messages.error(request, 'Please Enter tid Number')
+    return render(request,'zest/generate_tid.html',{'form':fm})
+
+@login_required(login_url='/zest/login/')
+def add_pid_in_tid(request,tid=None):
   tid_obj = Tid.objects.get(id=tid)
   if request.method == "POST":
     pid1 = request.POST.get('pid',False)
-    tid_obj.pid.add(pid1)
-    return render(request,'zest/tid_info.html',{'tid_obj':tid_obj})
+    if pid1:
+      try:
+        tid_obj.pid.add(pid1)
+        return render(request,'zest/tid_info.html',{'tid_obj':tid_obj})
+      except Exception as e:
+        messages.error(request, 'Either Roll Number is incorrect or it is not registered.')
+        return render(request,'zest/tid_info.html',{'tid_obj':tid_obj})
+    else:
+      messages.error(request, 'Either PID to add')
+      return render(request,'zest/tid_info.html',{'tid_obj':tid_obj})
   else:    
     return render(request,'zest/tid_info.html',{'tid_obj':tid_obj})

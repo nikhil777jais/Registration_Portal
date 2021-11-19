@@ -36,4 +36,13 @@ class Generate_Pid_form(forms.ModelForm):
       'branch': forms.Select(attrs={'class':'form-control'}),
       'phone': forms.NumberInput(attrs={'class':'form-control'}),
       }
-    labels = {'Name':'Full Name','college_name':'College Name','roll_no':'Roll Number','phone':'Contact Number'}
+    
+
+class Generate_Tid_form(forms.ModelForm):
+  class Meta:
+    model = Tid
+    fields = ['college_name']
+    widgets = {
+      'college_name': forms.Select(attrs={'class':'form-control'}),
+    }
+    labels = {'college_name':'College Name'}
