@@ -2,7 +2,7 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from zest.models import Pid,Tid
+from zest.models import Pid, Team_Event,Tid, Individual_Event, Team_Event
 from zest.forms import Sign_up_form, log_in_form, Generate_Pid_form, Generate_Tid_form
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
@@ -89,7 +89,6 @@ def search_pid(request):
       messages.error(request, 'Either Roll Number is incorrect or it is not registered.')
       return render(request,'zest/pid_info.html',)     
   else:
-    messages.error(request, 'Please Enter Roll Number')
     return render(request,'zest/pid_info.html',)
 
 @login_required(login_url='/zest/login/')
@@ -123,7 +122,6 @@ def search_tid(request):
       messages.error(request, 'Either tid is incorrect or it is not registered.')
       return render(request,'zest/generate_tid.html',{'form':fm})     
   else:
-    messages.error(request, 'Please Enter tid Number')
     return render(request,'zest/generate_tid.html',{'form':fm})
 
 @login_required(login_url='/zest/login/')
@@ -143,3 +141,47 @@ def add_pid_in_tid(request,tid=None):
       return render(request,'zest/tid_info.html',{'tid_obj':tid_obj})
   else:    
     return render(request,'zest/tid_info.html',{'tid_obj':tid_obj})
+
+@login_required
+def register_event(request):
+  return render(request,'zest/register_event.html')
+
+@login_required
+def add_event_in_pid(request):
+  event_name = request.POST.get('event_name',False)
+  pid = request.POST.get('pid',False)
+  if pid:
+    try:
+      pid_obj = Pid.objects.get(id=pid)
+      individual_event_obj = Individual_Event(event_name=event_name, pid=pid_obj)
+      individual_event_obj.save()
+      print("Done")
+      return render(request, "zest/pid_info.html",{'pid':pid_obj})
+    except Exception as e:
+      messages.error(request, 'Either pid is incorrect or it is not registered.')
+      return render(request,'zest/register_event.html')
+  else:   
+    return render(request,'zest/register_event.html')
+
+@login_required
+def add_event_in_tid(request):
+  event_name = request.POST.get('event_name',False)
+  tid = request.POST.get('tid',False)
+  try:
+    Team_Event.objects.filter(tid=tid)[0]
+    messages.error(request, 'This team is alredy registered')
+    return render(request,'zest/register_event.html')
+  except Exception as e:  
+    pass
+  if tid:
+    try:
+      tid_obj = Tid.objects.get(id=tid)
+      team_event_obj = Team_Event(event_name=event_name, tid=tid_obj)
+      team_event_obj.save()
+      print("Done")
+      return render(request, "zest/tid_info.html",{'tid_obj':tid_obj})
+    except Exception as e:
+      messages.error(request, 'Either tid is incorrect or it is not registered.')
+      return render(request,'zest/register_event.html')
+  else:   
+    return render(request,'zest/register_event.html')

@@ -18,9 +18,7 @@
 {% block content %}
 {% if pid %}
 <div class="container bg-white rounded">
-<form>
-    <input type="button" value="Print this page" onClick="window.print()">
-</form>
+
   <div class="row justify-content-center text-center mb-4">
     <div class="col-md-9 ">
       <img src="{% static 'zest/images/q.png' %}" class="rounded mx-auto py-3 d-block" width=35% alt="srmslogo">
@@ -66,7 +64,15 @@
         </tbody>
       </table>
     </div>
-    <div class="col-md-6">
+  </div>
+</div>
+<div class="container">
+  <div class="row d-print-none">
+    <div class="col-md-12 mt-2  text-center">
+      <form>
+        <input class="btn btn-color" type="button" value="Print this page" onClick="window.print()">
+        <a href="{% url 'register_event' %}" class="btn btn-color mx-2">Regiter for Event</a>
+      </form>
     </div>
   </div>
 </div>

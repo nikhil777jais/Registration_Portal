@@ -1,0 +1,179 @@
+{% extends 'zest/base.html' %}
+{% load static %}
+{% block message %}
+<div class="container text-white">
+  <div class="row">
+    <div class="col-md-12 mt-3">
+      {% if messages %}
+      {% for message in messages %}
+      <div {% if message %} class="alert alert-{{message.tags}}" {% endif %}role="alert">
+        <h3>{{message}}</h3>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock message %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-12 my-2 text-center"> 
+      <h2>Solo Events</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 mt-3">
+      <div class="card text-center">
+        <div class="card-header">
+          <img src="{% static 'zest/images/bootwise-icon-02.png' %}" class="card-img-top" alt="registration image">
+        </div>
+        <div class="card-body mb-0">
+          <h5 class="card-title text-center">Solo Dance</h5>
+          <form action="{% url 'add_event_in_pid' %}" method="POST" novalidate>
+            {% csrf_token %}
+            <input class='d-none' name="event_name" value="Solo Dance"/>
+            <input class="form-control mx-sm-2 mb-2" type="search" placeholder="Enter PID" name="pid" aria-label="regester_event">
+            <button class="btn btn-color my-2 my-sm-0" type="submit">Register</button>
+          </form>
+        </div>
+      </div>
+    </div> 
+    <div class="col-md-3 mt-3">
+      <div class="card text-center">
+        <div class="card-header">
+          <img src="{% static 'zest/images/bootwise-icon-02.png' %}" class="card-img-top" alt="registration image">
+        </div>
+        <div class="card-body mb-0">
+          <h5 class="card-title text-center">Best Dancer</h5>
+          <form action="{% url 'add_event_in_pid' %}" method="POST" novalidate>
+            {% csrf_token %}
+            <input class='d-none' name="event_name" value="Best Dancer"/>
+            <input class="form-control mx-sm-2 mb-2" type="search" placeholder="Enter PID" name="pid" aria-label="regester_event">
+            <button class="btn btn-color my-2 my-sm-0" type="submit">Register</button>
+          </form>
+        </div>
+      </div>
+    </div> 
+    <div class="col-md-3 mt-3">
+      <div class="card text-center">
+        <div class="card-header">
+          <img src="{% static 'zest/images/bootwise-icon-02.png' %}" class="card-img-top" alt="registration image">
+        </div>
+        <div class="card-body mb-0">
+          <h5 class="card-title text-center">Gratis</h5>
+          <form action="{% url 'add_event_in_pid' %}" method="POST" novalidate>
+            {% csrf_token %}
+            <input class='d-none' name="event_name" value="Gratis"/>
+            <input class="form-control mx-sm-2 mb-2" type="search" placeholder="Enter PID" name="pid" aria-label="regester_event">
+            <button class="btn btn-color my-2 my-sm-0" type="submit">Register</button>
+          </form>
+        </div>
+      </div>
+    </div> 
+    <div class="col-md-3 mt-3">
+      <div class="card text-center">
+        <div class="card-header">
+          <img src="{% static 'zest/images/bootwise-icon-02.png' %}" class="card-img-top" alt="registration image">
+        </div>
+        <div class="card-body mb-0">
+          <h5 class="card-title text-center">Charcolate</h5>
+          <form action="{% url 'add_event_in_pid' %}" method="POST" novalidate>
+            {% csrf_token %}
+            <input class='d-none' name="event_name" value="Charcolate"/>
+            <input class="form-control mx-sm-2 mb-2" type="search" placeholder="Enter PID" name="pid" aria-label="regester_event">
+            <button class="btn btn-color my-2 my-sm-0" type="submit">Register</button>
+          </form>
+        </div>
+      </div>
+    </div> 
+    <div class="col-md-3 mt-3">
+      <div class="card text-center">
+        <div class="card-header">
+          <img src="{% static 'zest/images/bootwise-icon-02.png' %}" class="card-img-top" alt="registration image">
+        </div>
+        <div class="card-body mb-0">
+          <h5 class="card-title text-center">Charcolate</h5>
+          <form action="{% url 'add_event_in_pid' %}" method="POST" novalidate>
+            {% csrf_token %}
+            <input class='d-none' name="event_name" value="Charcolate"/>
+            <input class="form-control mx-sm-2 mb-2" type="search" placeholder="Enter PID" name="pid" aria-label="regester_event">
+            <button class="btn btn-color my-2 my-sm-0" type="submit">Register</button>
+          </form>
+        </div>
+      </div>
+    </div> 
+    <div class="col-md-3 mt-3">
+      <div class="card text-center">
+        <div class="card-header">
+          <img src="{% static 'zest/images/bootwise-icon-02.png' %}" class="card-img-top" alt="registration image">
+        </div>
+        <div class="card-body mb-0">
+          <h5 class="card-title text-center">Charcolate</h5>
+          <form action="{% url 'add_event_in_pid' %}" method="POST" novalidate>
+            {% csrf_token %}
+            <input class='d-none' name="event_name" value="Charcolate"/>
+            <input class="form-control mx-sm-2 mb-2" type="search" placeholder="Enter PID" name="pid" aria-label="regester_event">
+            <button class="btn btn-color my-2 my-sm-0" type="submit">Register</button>
+          </form>
+        </div>
+      </div>
+    </div> 
+    <div class="col-md-3 mt-3">
+      <div class="card text-center">
+        <div class="card-header">
+          <img src="{% static 'zest/images/bootwise-icon-02.png' %}" class="card-img-top" alt="registration image">
+        </div>
+        <div class="card-body mb-0">
+          <h5 class="card-title text-center">Charcolate</h5>
+          <form action="{% url 'add_event_in_pid' %}" method="POST" novalidate>
+            {% csrf_token %}
+            <input class='d-none' name="event_name" value="Charcolate"/>
+            <input class="form-control mx-sm-2 mb-2" type="search" placeholder="Enter PID" name="pid" aria-label="regester_event">
+            <button class="btn btn-color my-2 my-sm-0" type="submit">Register</button>
+          </form>
+        </div>
+      </div>
+    </div> 
+    <div class="col-md-3 mt-3">
+      <div class="card text-center">
+        <div class="card-header">
+          <img src="{% static 'zest/images/bootwise-icon-02.png' %}" class="card-img-top" alt="registration image">
+        </div>
+        <div class="card-body mb-0">
+          <h5 class="card-title text-center">Charcolate</h5>
+          <form action="{% url 'add_event_in_pid' %}" method="POST" novalidate>
+            {% csrf_token %}
+            <input class='d-none' name="event_name" value="Charcolate"/>
+            <input class="form-control mx-sm-2 mb-2" type="search" placeholder="Enter PID" name="pid" aria-label="regester_event">
+            <button class="btn btn-color my-2 my-sm-0" type="submit">Register</button>
+          </form>
+        </div>
+      </div>
+    </div> 
+  </div>
+  <div class="row">
+    <div class="col-12 text-center my-2"> 
+      <h2>Team Events</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 mt-3">
+      <div class="card text-center">
+        <div class="card-header">
+          <img src="{% static 'zest/images/bootwise-icon-02.png' %}" class="card-img-top" alt="registration image">
+        </div>
+        <div class="card-body mb-0">
+          <h5 class="card-title">Group Dance</h5>
+          <form action="{% url 'add_event_in_tid' %}" method="POST" novalidate>
+            {% csrf_token %}
+            <input class='d-none' name="event_name" value="Group Dance"/>
+            <input class="form-control mx-sm-2 mb-2" type="search" placeholder="Enter TID" name="tid" aria-label="regester_event">
+            <button class="btn btn-color my-2 my-sm-0" type="submit">Register</button>
+          </form>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
+{% endblock content %}

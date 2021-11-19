@@ -10,6 +10,7 @@ def validate_phone(value):
   else:
     raise ValidationError("Invalid Mobile No")
 
+
 COLLEGE_CHOICES =	(
 	('SRMS CET', 'SRMS CET'),
   ('SRMS CERT', 'SRMS CETR'),
@@ -39,6 +40,12 @@ BATCH_CHOICES = (
 	('2019', '2019'),
 	('2018', '2018'),
 	('2017', '2017'),
+)
+SOLO_EVENT = (
+	('Solo Dance', 'Solo Dance'),
+)
+TEAM_EVENT = (
+	('Group Dance', 'Group Dance'),
 )
 class Pid(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
@@ -70,3 +77,12 @@ class Tid(models.Model):
 
     def pids(self):
       return " , ".join([ str(p.id) for p in self.pid.all()])  
+ 
+      
+class Individual_Event(models.Model):
+    event_name = CharField(choices=SOLO_EVENT,max_length=100,  help_text='Enter Event Name',)
+    pid = models.ForeignKey(Pid, blank=True, on_delete=models.CASCADE,related_name= 'pid_event')
+      
+class Team_Event(models.Model):
+    event_name = CharField(choices=TEAM_EVENT,max_length=100,  help_text='Enter Event Name',)
+    tid = models.OneToOneField(Tid, blank=True, on_delete=models.CASCADE,related_name= 'tid_event')
