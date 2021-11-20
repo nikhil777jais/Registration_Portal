@@ -68,7 +68,7 @@ class Pid(models.Model):
 
     @property
     def tids(self):
-    	return self.pid_event.all()
+    	return self.pid_event.all() 
 
 class Tid(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
@@ -89,8 +89,18 @@ class Tid(models.Model):
       
 class Individual_Event(models.Model):
     event_name = CharField(max_length=100,  help_text='Enter Event Name',)
-    pid = models.ForeignKey(Pid, blank=True, on_delete=models.CASCADE,related_name= 'pid_event')
+    event_venue = CharField(max_length=100,  help_text='Enter Event Venue',)
+    event_time = models.DateTimeField(default=timezone.now)
+    pid = models.ManyToManyField(Pid, blank=True, related_name= 'pid_event')
+    
+    def pids(self):
+      return " , ".join([ str(p.id) for p in self.pid.all()])  
       
 class Team_Event(models.Model):
     event_name = CharField(max_length=100,  help_text='Enter Event Name',)
-    tid = models.OneToOneField(Tid, blank=True, on_delete=models.CASCADE,related_name= 'tid_event')
+    event_venue = CharField(max_length=100,  help_text='Enter Event Venue',default=None)
+    event_time = models.DateTimeField(default=timezone.now)
+    tid = models.ManyToManyField(Tid, blank=True, related_name= 'tid_event')
+
+    def tids(self):
+      return " , ".join([ str(t.id) for t in self.tid.all()])  

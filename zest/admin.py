@@ -11,8 +11,8 @@ class TidAdmin(admin.ModelAdmin):
 
 @admin.register(Individual_Event)
 class Individual_EventAdmin(admin.ModelAdmin):
-    list_display = ['id','event_name','pid']
+    list_display = ['id','event_name','pids']
 
 @admin.register(Team_Event)
 class Team_EventAdmin(admin.ModelAdmin):
-    list_display = ['id','event_name','tid']
+    list_display = ['id','event_name','tids']
