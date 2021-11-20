@@ -40,9 +40,9 @@
           </tr>
           <tr>
             <th class="align-middle py-2" width=20% scope="row">College Name</th>
-            <td class="align-left py-2" width=30%>{{pid.roll_no}}</td>
+            <td class="align-left py-2" width=30%>{{pid.college_name}}</td>
             <th class="align-middle py-2" width=20% scope="row">Roll Number</th>
-            <td class="align-left py-2">{{pid.college_name}}</td>
+            <td class="align-left py-2">{{pid.roll_no}}</td>
           </tr>
           <tr>
             <th class="align-middle py-2" width=20% scope="row">Batch</th>
@@ -70,7 +70,7 @@
           </tr>
         </thead>
         <tbody>
-        {% for event in pid.pid_event.all %}
+        {% for event in pid.pid_event.all%}
           <tr>
             <td class="align-middle py-2" width=100%>{{event.event_name}}</td>
           </tr>

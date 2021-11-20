@@ -103,7 +103,8 @@ def generate_tid(request):
     fm = Generate_Tid_form(request.POST)
     if fm.is_valid():
       college_name = fm.cleaned_data['college_name']
-      tid = Tid(college_name=college_name)
+      current_user = request.user
+      tid = Tid(college_name=college_name, generated_by=current_user)
       tid.save()
       return HttpResponseRedirect('/zest/add_pid_in_tid/{0}'.format(tid.id))
   else:
@@ -134,10 +135,10 @@ def add_pid_in_tid(request,tid=None):
         tid_obj.pid.add(pid1)
         return render(request,'zest/tid_info.html',{'tid_obj':tid_obj})
       except Exception as e:
-        messages.error(request, 'Either Roll Number is incorrect or it is not registered.')
+        messages.error(request, 'Enter correct PID')
         return render(request,'zest/tid_info.html',{'tid_obj':tid_obj})
     else:
-      messages.error(request, 'Either PID to add')
+      messages.error(request, 'Enter PID to add')
       return render(request,'zest/tid_info.html',{'tid_obj':tid_obj})
   else:    
     return render(request,'zest/tid_info.html',{'tid_obj':tid_obj})

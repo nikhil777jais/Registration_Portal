@@ -8,7 +8,13 @@ def validate_phone(value):
   if len(str(value)) == 10:
     return value
   else:
-    raise ValidationError("Invalid Mobile No")
+    raise ValidationError("Invalid Mobile Number")
+
+def validate_name(value):
+  if value.isalpha():
+    return value
+  else:
+    raise ValidationError("Enter Character Only")
 
 
 COLLEGE_CHOICES =	(
@@ -41,15 +47,12 @@ BATCH_CHOICES = (
 	('2018', '2018'),
 	('2017', '2017'),
 )
-SOLO_EVENT = (
-	('Solo Dance', 'Solo Dance'),
-)
 TEAM_EVENT = (
 	('Group Dance', 'Group Dance'),
 )
 class Pid(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
-    name = models.CharField(max_length=50, help_text='Enter Name')
+    name = models.CharField(max_length=50, help_text='Enter Name', validators=[validate_name])
     college_name = CharField(choices=COLLEGE_CHOICES, max_length=100, help_text='Select College')
     roll_no = models.IntegerField(unique=True)
     batch = models.CharField(choices=BATCH_CHOICES, max_length=25, help_text='Select Batch')
@@ -71,7 +74,8 @@ class Tid(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     college_name = CharField(choices=COLLEGE_CHOICES, max_length=100,  help_text='Select College')
     pid = models.ManyToManyField(Pid, blank=True, related_name= 'pids')
-    
+    generated_by = models.ForeignKey(User, on_delete=models.PROTECT,related_name='gereted_tid')
+
     @property
     def get_pid_count(self):
       return self.pid.count()
@@ -84,9 +88,9 @@ class Tid(models.Model):
  
       
 class Individual_Event(models.Model):
-    event_name = CharField(choices=SOLO_EVENT,max_length=100,  help_text='Enter Event Name',)
+    event_name = CharField(max_length=100,  help_text='Enter Event Name',)
     pid = models.ForeignKey(Pid, blank=True, on_delete=models.CASCADE,related_name= 'pid_event')
       
 class Team_Event(models.Model):
-    event_name = CharField(choices=TEAM_EVENT,max_length=100,  help_text='Enter Event Name',)
+    event_name = CharField(max_length=100,  help_text='Enter Event Name',)
     tid = models.OneToOneField(Tid, blank=True, on_delete=models.CASCADE,related_name= 'tid_event')

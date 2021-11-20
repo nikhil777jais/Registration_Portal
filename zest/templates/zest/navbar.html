@@ -15,15 +15,15 @@
             <a href="{% url 'home' %}"class="nav-link">Home</a>
           </li>
           <li class="nav-item">
-            <a href="{% url 'register_event' %}"class="nav-link">Events</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link">Contact</a>
           </li>
           <li class="nav-item">
             <a class="nav-link">Developer</a>
           </li>
           {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a href="{% url 'register_event' %}"class="nav-link">Events</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link " href="{% url 'logout' %}">Logout</a>
           </li>  
