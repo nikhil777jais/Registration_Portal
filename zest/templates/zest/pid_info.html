@@ -62,23 +62,38 @@
           </tr>
         </tbody>
       </table>
-      {% if pid.pid_event %}
+    </div>
+    <div class="col-md-12">
       <table class="table table-hover bg-white">
         <thead>
           <tr class="text-center">
-            <th scope="col" style="width:100%">Registered Event</th>
+            <th scope="col" style="width:50%">Registered Event</th>
+          </tr>
+        </thead>
+      </table>  
+    </div>
+    {% if pid.pid_event %}
+    <div class="col-md-12">  
+      <table class="table table-hover bg-white">
+        <thead>
+          <tr>
+            <th scope="col" style="width:45%">Event Name </th>
+            <th scope="col" style="width:30%">Event Venue </th>
+            <th scope="col" style="width:25%">Event Date and Time </th>
           </tr>
         </thead>
         <tbody>
         {% for event in pid.pid_event.all%}
           <tr>
-            <td class="align-middle py-2" width=100%>{{event.event_name}}</td>
+            <td class="align-middle py-2" width=45%>{{event.event_name}}</td>
+            <td class="align-middle py-2" width=30%>{{event.event_venue}}</td>
+            <td class="align-middle py-2" width=25%>{{event.event_time}}</td>
           </tr>
         {% endfor %}
         </tbody>
       </table>
-      {% endif %}
     </div>
+    {% endif %}
   </div>
 </div>
 <div class="container">
