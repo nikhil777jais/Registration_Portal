@@ -1,9 +1,10 @@
+{% load static %}
 <div class="row">
   <div class="col-md-12 py-1">
     <nav class="navbar navbar-expand-lg navbar-dark">
-      <img src="https://www.iconpacks.net/icons/2/free-icon-pin-location-4346.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
-      <a class="navbar-brand" href="{% url 'home' %}">Zest Theme</a>
-      
+      <a class="navbar-brand" href="{% url 'home' %}">
+      <img src="{% static 'zest/images/Tyro.png' %}" alt="" width="30" height="30" class="d-inline-block align-text-top">
+      </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -11,7 +12,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto ">
           <li class="nav-item">
-            <a class="nav-link">Events</a>
+            <a href="{% url 'home' %}"class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'register_event' %}"class="nav-link">Events</a>
           </li>
           <li class="nav-item">
             <a class="nav-link">Contact</a>

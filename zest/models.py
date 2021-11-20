@@ -61,7 +61,11 @@ class Pid(models.Model):
 
     @property
     def tids(self):
-    	return self.tid_set.all()
+    	return self.pids.all()
+
+    @property
+    def tids(self):
+    	return self.pid_event.all()
 
 class Tid(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')

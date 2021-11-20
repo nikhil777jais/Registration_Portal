@@ -63,5 +63,15 @@
         </div>
       </div>
     </div>
+    <div class="container">
+      <div class="row d-print-none">
+        <div class="col-md-12 mt-2  text-center">
+          <form>
+            <input class="btn btn-color serach-btn " type="button" value="Print this page" onClick="window.print()">
+            <a href="{% url 'register_event' %}" class="btn btn-color serach-btn mx-2">Regiter for Event</a>
+          </form>
+        </div>
+      </div>
+    </div>
   {% endif %}
 {% endblock content %}

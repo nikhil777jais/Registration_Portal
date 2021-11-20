@@ -1,7 +1,7 @@
 :root {
   --theme: #8d0b0b;
   --bgcolor: #126364;
-  --darkblue: #FEDA15;
+  --yellow: #FEDA15;
 }
 body{
   background: #E2E7E1;
@@ -34,6 +34,11 @@ body{
   background-color: var(--bgcolor);
   border-color: var(--bgcolor);
 }
+.serach-btn:hover{
+  color: #fff;
+  background-color: var(--bgcolor);
+  border-color: var(--bgcolor)
+}
 .btn-color{
   color: #fff;
   background-color: var(--theme);
@@ -41,15 +46,14 @@ body{
 }
 .btn-nav{
   color: rgb(0, 0, 0);
-  background-color: var(--darkblue);
-  border-color: var(--darkblue);
+  background-color: var(--yellow);
+  border-color: var(--yellow);
 }
 .btn-nav:hover{
   color: rgb(255, 255, 255);
   background-color: var(--bgcolor);
   border-color: var(--bgcolor);
 }
-
 .card-img-top{
   width: 70% !important; 
 }
@@ -86,6 +90,11 @@ body{
   position: sticky;
   top: 0;
   max-height: 100vh;
+}
+.mybutton
+{
+    border: 1px dashed #CCCCCC;
+    border-bottom: 2px ridge Lime;
 }
 /* .jumbotron{
   background-color: #585858;
