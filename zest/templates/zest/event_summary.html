@@ -1,0 +1,42 @@
+{% extends 'zest/base.html' %}
+{% block content %}
+<div class="container vh-100">
+  <div class="row rounded mt-4 bg-warning">
+    <div class="col-md-12 p-2 text-center">
+      <h4>Registration Sunmmry</h4>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <table class="table table-bordered table-hover bg-white">
+        <thead>
+          <tr class="text-center">
+            <th scope="col" style="width:33%">Event Name </th>
+            <th scope="col" style="width:35%">Total Count</th>
+            <th scope="col" style="width:37%">Action</th>
+          </tr>
+        </thead>  
+        <tbody>
+          {% for event in events %}
+          <tr>
+            <td class="align-middle text-center p-1">{{event.event_name}}</td>
+            <td class="text-center align-middle p-1">{{event.pid_count}}</td>
+            <td class="align-middle text-center p-1">
+              <a href="{% url 'event_details' event.id %}" class="btn serach-btn btn-warning">View Details</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row d-print-none">
+    <div class="col-md-12 mt-2  text-center">
+      <form>
+        <input class="btn btn-color serach-btn " type="button" value="Print this page" onClick="window.print()">
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

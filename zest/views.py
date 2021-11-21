@@ -33,12 +33,13 @@ def log_in(request):
         except Exception as e:
           messages.error(request, 'You are not allowed to visit')
           return HttpResponseRedirect('/zest/login')  
-        if not str(user.groups.get()) == 'rc_member' or request.user.is_superuser:
+        if not str(user.groups.get()) == 'rc_member':
           messages.error(request, 'You are not allowed to visit')
           return HttpResponseRedirect('/zest/login')
         if user is not None:
           login(request, user)
-          nm = request.user.username
+          if request.user.is_superuser:
+            return HttpResponseRedirect('/zest/event_summary/')
           return HttpResponseRedirect('/zest/home',)
     else:  
       fm = log_in_form()
@@ -143,11 +144,11 @@ def add_pid_in_tid(request,tid=None):
   else:    
     return render(request,'zest/tid_info.html',{'tid_obj':tid_obj})
 
-@login_required
+@login_required(login_url='/zest/login/')
 def register_event(request):
   return render(request,'zest/register_event.html')
 
-@login_required
+@login_required(login_url='/zest/login/')
 def add_event_in_pid(request):
   event_name = request.POST.get('event_name',False)
   pid = request.POST.get('pid',False)
@@ -164,7 +165,7 @@ def add_event_in_pid(request):
   else:   
     return render(request,'zest/register_event.html')
 
-@login_required
+@login_required(login_url='/zest/login/')
 def add_event_in_tid(request):
   event_name = request.POST.get('event_name',False)
   tid = request.POST.get('tid',False)
@@ -184,3 +185,16 @@ def add_event_in_tid(request):
       return render(request,'zest/register_event.html')
   else:   
     return render(request,'zest/register_event.html')
+
+@login_required(login_url='/zest/login/')
+def event_summary(request):
+  events = Individual_Event.objects.all()
+  return render(request,'zest/event_summary.html', {'events': events})
+
+@login_required(login_url='/zest/login/')
+def event_details(request,id):
+  individual_event_obj =Individual_Event.objects.get(id=id)
+  pids = individual_event_obj.pid.all()
+  return render(request,'zest/event_details.html', {'pids': pids})
+  
+   

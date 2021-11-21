@@ -7,7 +7,7 @@
       {% if messages %}
       {% for message in messages %}
       <div {% if message %} class="alert alert-{{message.tags}}" {% endif %}role="alert">
-        <h3>{{message}}</h3>
+        {{message}}
       </div>
       {% endfor %}
       {% endif %}
@@ -17,7 +17,7 @@
 {% endblock message %}
 {% block content %}
 {% if pid %}
-<div class="container bg-white rounded">
+<div class="container bg-white rounded" >
   <div class="row justify-content-center text-center mb-4">
     <div class="col-md-9 ">
       <img src="{% static 'zest/images/q.png' %}" class="rounded mx-auto py-3 d-block" width=35% alt="srmslogo">
@@ -64,7 +64,7 @@
       </table>
     </div>
     <div class="col-md-12">
-      <table class="table table-hover bg-white">
+      <table class="table table-bordered table-hover bg-white">
         <thead>
           <tr class="text-center">
             <th scope="col" style="width:50%">Registered Event</th>
@@ -74,7 +74,7 @@
     </div>
     {% if pid.pid_event %}
     <div class="col-md-12">  
-      <table class="table table-hover bg-white">
+      <table class="table table-bordered table-hover bg-white">
         <thead>
           <tr>
             <th scope="col" style="width:45%">Event Name </th>

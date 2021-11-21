@@ -20,12 +20,20 @@
           <li class="nav-item">
             <a class="nav-link">Developer</a>
           </li>
+          {% comment %} {% if request.user.is_superuser %}
+            <li class="nav-item">
+              <a href="{% url 'event_summary' %}"class="nav-link">Summary</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="{% url 'logout' %}">Logout</a>
+            </li>
+          {% endif %} {% endcomment %}
           {% if request.user.is_authenticated %}
           <li class="nav-item">
             <a href="{% url 'register_event' %}"class="nav-link">Events</a>
           </li>
           <li class="nav-item">
-            <a href="{% url 'register_event' %}"class="nav-link">Events</a>
+            <a href="{% url 'event_summary' %}"class="nav-link">Summary</a>
           </li>
           <li class="nav-item">
             <a class="nav-link " href="{% url 'logout' %}">Logout</a>

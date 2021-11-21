@@ -11,10 +11,12 @@ def validate_phone(value):
     raise ValidationError("Invalid Mobile Number")
 
 def validate_name(value):
-  if value.isalpha():
-    return value
+  inputs = list(map(str,value.split()))
+  for input in inputs:
+    if not input.isalpha():
+      raise ValidationError("Enter Character Only")
   else:
-    raise ValidationError("Enter Character Only")
+    return value
 
 
 COLLEGE_CHOICES =	(
@@ -93,6 +95,10 @@ class Individual_Event(models.Model):
     event_time = models.DateTimeField(default=timezone.now)
     pid = models.ManyToManyField(Pid, blank=True, related_name= 'pid_event')
     
+    @property
+    def pid_count(self):
+      return self.pid.count()
+
     def pids(self):
       return " , ".join([ str(p.id) for p in self.pid.all()])  
       
@@ -101,6 +107,10 @@ class Team_Event(models.Model):
     event_venue = CharField(max_length=100,  help_text='Enter Event Venue',default=None)
     event_time = models.DateTimeField(default=timezone.now)
     tid = models.ManyToManyField(Tid, blank=True, related_name= 'tid_event')
+
+    @property
+    def tid_count(self):
+      return self.tid.count()
 
     def tids(self):
       return " , ".join([ str(t.id) for t in self.tid.all()])  
