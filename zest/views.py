@@ -169,13 +169,17 @@ def add_event_in_pid(request):
 def add_event_in_tid(request):
   event_name = request.POST.get('event_name',False)
   tid = request.POST.get('tid',False)
-  tid_obj = Tid.objects.get(id=tid)
+  try:
+    tid_obj = Tid.objects.get(id=tid)
+  except:
+    messages.error(request, 'Either tid is incorrect or it is not registered.')
+    return render(request,'zest/register_event.html')
+
   if tid_obj.tid_event.all():
     messages.error(request, 'This team is alredy registered')
     return render(request,'zest/register_event.html')
   if tid:
     try:
-      tid_obj = Tid.objects.get(id=tid)
       team_event_obj = Team_Event.objects.filter(event_name=event_name)[0]
       team_event_obj.tid.add(tid_obj)
       team_event_obj.save()
@@ -188,13 +192,20 @@ def add_event_in_tid(request):
 
 @login_required(login_url='/zest/login/')
 def event_summary(request):
-  events = Individual_Event.objects.all()
-  return render(request,'zest/event_summary.html', {'events': events})
+  i_events = Individual_Event.objects.all()
+  t_events = Team_Event.objects.all()
+  return render(request,'zest/event_summary.html', {'i_events': i_events, 't_events':t_events})
 
 @login_required(login_url='/zest/login/')
 def event_details(request,id):
   individual_event_obj =Individual_Event.objects.get(id=id)
   pids = individual_event_obj.pid.all()
   return render(request,'zest/event_details.html', {'pids': pids})
+  
+@login_required(login_url='/zest/login/')
+def t_event_details(request,id):
+  team_event_obj = Team_Event.objects.get(id=id)
+  tids = team_event_obj.tid.all()
+  return render(request,'zest/t_event_details.html', {'tids': tids})
   
    
