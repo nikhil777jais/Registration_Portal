@@ -14,7 +14,7 @@ def signup(request):
     fm = Sign_up_form(request.POST)
     if fm.is_valid():
       fm.save()
-      messages.success(request, 'Conratulations!! Now You are An Aurthor')
+      messages.success(request, 'Congratulations!! Now You are now an Author')
   else: 
     fm = Sign_up_form()
   return render(request,'zest/signup.html', {'form': fm})
@@ -50,7 +50,7 @@ def log_in(request):
 #logout
 def log_out(request):
   logout(request)
-  messages.error(request,'Logout Successfully !!')
+  messages.error(request,'Logged Out Successfully !!')
   return HttpResponseRedirect('/zest/login/')
 
 @login_required(login_url='/zest/login/')
@@ -84,10 +84,10 @@ def search_pid(request):
     try:
       pid  = Pid.objects.filter(roll_no=roll_no)[0]
       if not pid:
-        messages.error(request, 'Either Roll Number is incorrect or it is not registered.')
+        messages.error(request, 'Either Roll Number is incorrect or is not registered.')
       return render(request,'zest/pid_info.html', {'pid':pid})
     except Exception as e:
-      messages.error(request, 'Either Roll Number is incorrect or it is not registered.')
+      messages.error(request, 'Either Roll Number is incorrect or is not registered.')
       return render(request,'zest/pid_info.html',)     
   else:
     return render(request,'zest/pid_info.html',)
@@ -121,7 +121,7 @@ def search_tid(request):
       tid_obj  = Tid.objects.get(id=tid)
       return render(request,'zest/tid_info.html', {'tid_obj':tid_obj})
     except Exception as e:
-      messages.error(request, 'Either tid is incorrect or it is not registered.')
+      messages.error(request, 'Either tid is incorrect or is not registered.')
       return render(request,'zest/generate_tid.html',{'form':fm})     
   else:
     return render(request,'zest/generate_tid.html',{'form':fm})
@@ -139,7 +139,7 @@ def add_pid_in_tid(request,tid=None):
         messages.error(request, 'Enter correct PID')
         return render(request,'zest/tid_info.html',{'tid_obj':tid_obj})
     else:
-      messages.error(request, 'Enter PID to add')
+      messages.error(request, 'Enter PID to be add')
       return render(request,'zest/tid_info.html',{'tid_obj':tid_obj})
   else:    
     return render(request,'zest/tid_info.html',{'tid_obj':tid_obj})
@@ -160,7 +160,7 @@ def add_event_in_pid(request):
       individual_event_obj.save()
       return render(request, "zest/pid_info.html",{'pid':pid_obj})
     except Exception as e:
-      messages.error(request, 'Either pid is incorrect or it is not registered.')
+      messages.error(request, 'Either pid is incorrect or is not registered.')
       return render(request,'zest/register_event.html')
   else:   
     return render(request,'zest/register_event.html')
@@ -171,7 +171,7 @@ def add_event_in_tid(request):
   tid = request.POST.get('tid',False)
   tid_obj = Tid.objects.get(id=tid)
   if tid_obj.tid_event.all():
-    messages.error(request, 'This team is alredy registered')
+    messages.error(request, 'This team is already registered')
     return render(request,'zest/register_event.html')
   if tid:
     try:
@@ -181,7 +181,7 @@ def add_event_in_tid(request):
       team_event_obj.save()
       return render(request, "zest/tid_info.html",{'tid_obj':tid_obj})
     except Exception as e:
-      messages.error(request, 'Either tid is incorrect or it is not registered.')
+      messages.error(request, 'Either tid is incorrect or is not registered.')
       return render(request,'zest/register_event.html')
   else:   
     return render(request,'zest/register_event.html')
