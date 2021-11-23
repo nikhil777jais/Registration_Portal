@@ -21,7 +21,7 @@ def validate_name(value):
 
 COLLEGE_CHOICES =	(
 	('SRMS CET', 'SRMS CET'),
-  ('SRMS CERT', 'SRMS CETR'),
+  ('SRMS CETR', 'SRMS CETR'),
   ('SRMS UNNAO', 'SRMS UNNAO'),
   ('SRMS IMS', 'SRMS IMS'),
   ('SRMS NURSING', 'SRMS NURSING'),
