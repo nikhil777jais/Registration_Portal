@@ -1,6 +1,14 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+  <style>
+    /* Custom CSS to prevent the content 
+    to go underneath the navbar */
+    body{
+        padding-top: 70px;
+    }
+</style>
+
 
 <head>
   <meta charset="UTF-8">
@@ -16,7 +24,7 @@
   <script src="{% static 'zest/js/jquery.js' %}"></script>
   <script src="{% static 'zest/js/popper.js' %}"></script>
   <script src="{% static 'zest/js/bootstrap.js' %}"></script>
-  <div class="container-fluid nav_bg px-0">
+  <div class="container-fluid nav_bg px-0 fixed-top">
     <div class="container">
       {% include 'zest/navbar.html' %}
     </div>
