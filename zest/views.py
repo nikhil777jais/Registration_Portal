@@ -14,11 +14,7 @@ def signup(request):
     fm = Sign_up_form(request.POST)
     if fm.is_valid():
       fm.save()
-<<<<<<< HEAD
       messages.success(request, 'Conratulations!!')
-=======
-      messages.success(request, 'Congratulations!! Now You are now an Author')
->>>>>>> typofixing
   else: 
     fm = Sign_up_form()
   return render(request,'zest/signup.html', {'form': fm})
@@ -44,7 +40,7 @@ def log_in(request):
           login(request, user)
           if request.user.is_staff:
             return HttpResponseRedirect('/zest/event_summary/')
-          return HttpResponseRedirect('/zest/home',)
+          return HttpResponseRedirect('/zest/home')
     else:  
       fm = log_in_form()
     return render(request,'zest/login.html', {'form':fm})
@@ -72,9 +68,10 @@ def generate_pid(request):
       batch = fm.cleaned_data['batch']
       course = fm.cleaned_data['course']
       branch = fm.cleaned_data['branch']
+      gender = fm.cleaned_data['gender']
       phone = fm.cleaned_data['phone']
       current_user = request.user
-      pid = Pid(name=name,college_name=college_name,roll_no=roll_no,batch=batch,course=course,branch=branch,phone=phone,generated_by=current_user)
+      pid = Pid(name=name,college_name=college_name,roll_no=roll_no,batch=batch,course=course,branch=branch,phone=phone,generated_by=current_user, gender=gender)
       pid.save()
       return HttpResponseRedirect('/zest/search_pid/{0}'.format(roll_no))
   else:

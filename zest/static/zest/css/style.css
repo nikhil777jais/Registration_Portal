@@ -5,6 +5,11 @@
 }
 body{
   background: #E2E7E1;
+  min-height: 100vh;
+}
+.sticky-footer{
+  position: sticky;
+  top: 100%;
 }
 .card-bg{
   background: #E2E7E1;
