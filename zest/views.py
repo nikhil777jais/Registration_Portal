@@ -14,7 +14,11 @@ def signup(request):
     fm = Sign_up_form(request.POST)
     if fm.is_valid():
       fm.save()
+<<<<<<< HEAD
       messages.success(request, 'Conratulations!!')
+=======
+      messages.success(request, 'Congratulations!! Now You are now an Author')
+>>>>>>> typofixing
   else: 
     fm = Sign_up_form()
   return render(request,'zest/signup.html', {'form': fm})
