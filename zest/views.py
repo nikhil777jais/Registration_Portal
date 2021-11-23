@@ -14,11 +14,7 @@ def signup(request):
     fm = Sign_up_form(request.POST)
     if fm.is_valid():
       fm.save()
-<<<<<<< HEAD
       messages.success(request, 'Conratulations!!')
-=======
-      messages.success(request, 'Congratulations!! Now You are now an Author')
->>>>>>> typofixing
   else: 
     fm = Sign_up_form()
   return render(request,'zest/signup.html', {'form': fm})
@@ -265,7 +261,6 @@ def event_details(request,id):
   pids = individual_event_obj.pid.all()
   return render(request,'zest/event_details.html', {'pids': pids})
   
-<<<<<<< HEAD
 @login_required(login_url='/zest/login/')
 def t_event_details(request,id):
   team_event_obj = Team_Event.objects.get(id=id)
@@ -273,6 +268,3 @@ def t_event_details(request,id):
   return render(request,'zest/t_event_details.html', {'tids': tids})
   
    
-=======
-   
->>>>>>> typofixing
