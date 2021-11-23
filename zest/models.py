@@ -79,7 +79,7 @@ class Tid(models.Model):
     generated_by = models.ForeignKey(User, on_delete=models.PROTECT,related_name='gereted_tid')
 
     @property
-    def get_pid_count(self):
+    def pid_count(self):
       return self.pid.count()
 
     def get_all_pid(self):

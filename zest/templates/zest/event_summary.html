@@ -1,6 +1,6 @@
 {% extends 'zest/base.html' %}
 {% block content %}
-<div class="container vh-100">
+<div class="container ">
   <div class="row rounded mt-4 bg-warning">
     <div class="col-md-12 p-2 text-center">
       <h4>Registration Summary</h4>
@@ -17,12 +17,21 @@
           </tr>
         </thead>  
         <tbody>
-          {% for event in events %}
+          {% for event in i_events %}
           <tr>
             <td class="align-middle text-center p-1">{{event.event_name}}</td>
             <td class="text-center align-middle p-1">{{event.pid_count}}</td>
             <td class="align-middle text-center p-1">
               <a href="{% url 'event_details' event.id %}" class="btn serach-btn btn-warning">View Details</a>
+            </td>
+          </tr>
+          {% endfor %}
+          {% for event in t_events %}
+          <tr>
+            <td class="align-middle text-center p-1">{{event.event_name}}</td>
+            <td class="text-center align-middle p-1">{{event.tid_count}}</td>
+            <td class="align-middle text-center p-1">
+              <a href="{% url 't_event_details' event.id %}" class="btn serach-btn btn-warning">View Details</a>
             </td>
           </tr>
           {% endfor %}
