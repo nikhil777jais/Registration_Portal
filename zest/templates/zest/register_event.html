@@ -324,10 +324,26 @@
           <img src="{% static 'zest/images/bootwise-icon-02.png' %}" class="card-img-top" alt="registration image">
         </div>
         <div class="card-body mb-0">
-          <h5 class="card-title">Story Reciting</h5>
+          <h5 class="card-title">Story Recitation</h5>
           <form action="{% url 'add_event_in_tid' %}" method="POST" novalidate>
             {% csrf_token %}
-            <input class='d-none' name="event_name" value="STORY RECITING"/>
+            <input class='d-none' name="event_name" value="STORY RECITATION"/>
+            <input class="form-control mx-sm-2 mb-2" type="search" placeholder="Enter TID" name="tid" aria-label="regester_event">
+            <button class="btn btn-color serach-btn my-2 my-sm-0" type="submit">Register</button>
+          </form>
+        </div>
+      </div>
+    </div> 
+    <div class="col-md-3 mt-3">
+      <div class="card text-center">
+        <div class="card-header">
+          <img src="{% static 'zest/images/bootwise-icon-02.png' %}" class="card-img-top" alt="registration image">
+        </div>
+        <div class="card-body mb-0">
+          <h5 class="card-title">Mime</h5>
+          <form action="{% url 'add_event_in_tid' %}" method="POST" novalidate>
+            {% csrf_token %}
+            <input class='d-none' name="event_name" value="MIME"/>
             <input class="form-control mx-sm-2 mb-2" type="search" placeholder="Enter TID" name="tid" aria-label="regester_event">
             <button class="btn btn-color serach-btn my-2 my-sm-0" type="submit">Register</button>
           </form>

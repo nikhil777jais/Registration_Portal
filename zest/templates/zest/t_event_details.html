@@ -1,0 +1,38 @@
+{% extends 'zest/base.html' %}
+{% block content %}
+<div class="container vh-100">
+  <div class="row rounded mt-4 bg-warning">
+    <div class="col-md-12 p-2 text-center">
+      <h4>Event Details</h4>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <table class="table table-bordered table-hover bg-white">
+        <thead>
+          <tr class="text-center">
+            <th scope="col" style="width:50%">Event Name </th>
+            <th scope="col" style="width:50%">College Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for tid in tids %}
+          <tr>
+            <td class="align-middle text-center p-2">{{tid.id}}</td>
+            <td class="align-middle text-center p-2">{{tid.college_name}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row d-print-none">
+    <div class="col-md-12 mt-2  text-center">
+      <form>
+        <input class="btn btn-color serach-btn " type="button" value="Print this page" onClick="window.print()">
+        <a href="{% url 'event_summary' %}" class="btn btn-color serach-btn ">View Summary</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

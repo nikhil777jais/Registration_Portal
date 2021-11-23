@@ -15,5 +15,6 @@ urlpatterns = [
     path('add_event_in_pid/', views.add_event_in_pid, name='add_event_in_pid'),
     path('add_event_in_tid/', views.add_event_in_tid, name='add_event_in_tid'),
     path('event_summary/', views.event_summary, name='event_summary'),
-    path('event_details/<int:id>', views.event_details, name='event_details'),
+    path('event_details/<int:id>/', views.event_details, name='event_details'),
+    path('t_event_details/<int:id>/', views.t_event_details, name='t_event_details'),
 ]

@@ -38,7 +38,7 @@ def log_in(request):
           return HttpResponseRedirect('/zest/login')
         if user is not None:
           login(request, user)
-          if request.user.is_superuser:
+          if request.user.is_staff:
             return HttpResponseRedirect('/zest/event_summary/')
           return HttpResponseRedirect('/zest/home',)
     else:  
@@ -169,13 +169,76 @@ def add_event_in_pid(request):
 def add_event_in_tid(request):
   event_name = request.POST.get('event_name',False)
   tid = request.POST.get('tid',False)
-  tid_obj = Tid.objects.get(id=tid)
+  try:
+    tid_obj = Tid.objects.get(id=tid)
+    pid_count = tid_obj.pid_count
+    if event_name == 'GROUP DANCE':
+      if pid_count < 7 or pid_count > 25:
+        messages.error(request,'Team Member shuold be between 7 to 25')
+        return render(request,'zest/register_event.html')
+    elif event_name == 'DUET DANCE':
+      if pid_count != 2:
+        messages.error(request,'Team should have only 2 member')
+        return render(request,'zest/register_event.html')
+    elif event_name == 'MULTISCENE':
+      if pid_count < 8 or pid_count > 20:
+        messages.error(request,'Team Member shuold be between 8 to 20')
+        return render(request,'zest/register_event.html')
+    elif event_name == 'STREET PLAY':
+      if pid_count < 10 or pid_count > 20:
+        messages.error(request,'Team Member shuold be between 10 to 20')
+        return render(request,'zest/register_event.html')
+    elif event_name == 'MIME':
+      if pid_count < 6 or pid_count > 15:
+        messages.error(request,'Team Member shuold be between 6 to 15')
+        return render(request,'zest/register_event.html')
+    elif event_name == 'GRATIS':
+      if pid_count != 2:
+        messages.error(request,'Team should have only 2 member')
+        return render(request,'zest/register_event.html')
+    elif event_name == 'SITUATIONAL ANTAKSHRI':
+      if pid_count != 4:
+        messages.error(request,'Team should have only 4 member')
+        return render(request,'zest/register_event.html')
+    elif event_name == 'DUMB CHARADES':
+      if pid_count != 2:
+        messages.error(request,'Team should have only 4 member')
+        return render(request,'zest/register_event.html')
+    elif event_name == 'RANGOLI':
+      if pid_count != 2:
+        messages.error(request,'Team should have only 2 member')
+        return render(request,'zest/register_event.html')
+    elif event_name == 'DUET SONG':
+      if pid_count != 2:
+        messages.error(request,'Team should have only 2 member')
+        return render(request,'zest/register_event.html')
+    # only 6 teams allowed in FCFS
+    elif event_name == 'BATTLE OF BANDS':
+      team_event_obj = Team_Event.objects.filter(event_name=event_name)[0]
+      if team_event_obj.tid_count >= 6:
+        messages.error(request,'Registration closed for ths event')
+        return render(request,'zest/register_event.html')  
+      elif pid_count < 4 or pid_count > 8:
+        messages.error(request,'Team Member shuold be between 4 to 8')
+        return render(request,'zest/register_event.html')
+    # one team form one college   
+    elif event_name == 'STORY RECITATION':
+      if pid_count != 4:
+        messages.error(request,'Team should have only 2 member')
+        return render(request,'zest/register_event.html')
+    elif event_name == 'MIME':
+      if pid_count < 6 and pid_count > 15:
+        messages.error(request,'Team Member shuold be between 6 to 15')
+        return render(request,'zest/register_event.html')
+  except:
+    messages.error(request, 'Either tid is incorrect or it is not registered.')
+    return render(request,'zest/register_event.html')
+
   if tid_obj.tid_event.all():
     messages.error(request, 'This team is already registered')
     return render(request,'zest/register_event.html')
   if tid:
     try:
-      tid_obj = Tid.objects.get(id=tid)
       team_event_obj = Team_Event.objects.filter(event_name=event_name)[0]
       team_event_obj.tid.add(tid_obj)
       team_event_obj.save()
@@ -188,13 +251,20 @@ def add_event_in_tid(request):
 
 @login_required(login_url='/zest/login/')
 def event_summary(request):
-  events = Individual_Event.objects.all()
-  return render(request,'zest/event_summary.html', {'events': events})
+  i_events = Individual_Event.objects.all()
+  t_events = Team_Event.objects.all()
+  return render(request,'zest/event_summary.html', {'i_events': i_events, 't_events':t_events})
 
 @login_required(login_url='/zest/login/')
 def event_details(request,id):
   individual_event_obj =Individual_Event.objects.get(id=id)
   pids = individual_event_obj.pid.all()
   return render(request,'zest/event_details.html', {'pids': pids})
+  
+@login_required(login_url='/zest/login/')
+def t_event_details(request,id):
+  team_event_obj = Team_Event.objects.get(id=id)
+  tids = team_event_obj.tid.all()
+  return render(request,'zest/t_event_details.html', {'tids': tids})
   
    
