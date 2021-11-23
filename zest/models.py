@@ -49,8 +49,9 @@ BATCH_CHOICES = (
 	('2018', '2018'),
 	('2017', '2017'),
 )
-TEAM_EVENT = (
-	('Group Dance', 'Group Dance'),
+GENDER_CHOICES = (
+	('MALE', 'MALE'),
+	('FEMALE', 'FEMALE'),
 )
 class Pid(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
@@ -60,6 +61,7 @@ class Pid(models.Model):
     batch = models.CharField(choices=BATCH_CHOICES, max_length=25, help_text='Select Batch')
     course = models.CharField(choices=COURSE_CHOICES, max_length=25, help_text='Select Course')
     branch = models.CharField(choices=BRANCH_CHOICES, max_length=50, help_text='Select Branch')
+    gender = models.CharField(choices=GENDER_CHOICES, max_length=10, help_text='Select Gender')
     phone = models.IntegerField(help_text='Enter Mobile No',validators =[validate_phone])
     date_joined = models.DateTimeField(default=timezone.now)
     generated_by = models.ForeignKey(User, on_delete=models.PROTECT,related_name='gereted_pid')
