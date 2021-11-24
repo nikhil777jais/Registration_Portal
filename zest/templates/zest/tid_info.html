@@ -18,7 +18,7 @@
 {% block content %}
 <script>
     function copyid() {
-        var copyText = {{pid.id}};
+        var copyText = {{tid_obj.id}};
         navigator.clipboard.writeText(copyText);
         alert("Copied the text: " + copyText);
     }
