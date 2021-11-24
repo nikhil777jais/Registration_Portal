@@ -16,6 +16,13 @@
 </div>
 {% endblock message %}
 {% block content %}
+<script>
+    function copyid() {
+        var copyText = {{tid_obj.id}};
+        navigator.clipboard.writeText(copyText);
+        alert("Copied the text: " + copyText);
+    }
+</script>
   {% if tid_obj %}
     <div class="container">
       <div class="row justify-content-center d-print-none">
@@ -108,6 +115,7 @@
           <form>
             <input class="btn btn-color serach-btn " type="button" value="Print this page" onClick="window.print()">
             <a href="{% url 'register_event' %}" class="btn btn-color serach-btn mx-2">Register for Event</a>
+            <button class="btn btn-color serach-btn" onclick="copyid()">Copy TID</button>
           </form>
         </div>
       </div>
