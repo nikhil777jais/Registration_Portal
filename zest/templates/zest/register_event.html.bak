@@ -244,7 +244,7 @@
           <img src="{% static 'zest/images/antkshari.png' %}" class="card-img-top" alt="registration image">
         </div>
         <div class="card-body mb-0">
-          <h5 class="card-title">Situational Antakshari</h5>
+          <h5 class="card-title">Situational Antakshri</h5>
           <form action="{% url 'add_event_in_tid' %}" method="POST" novalidate>
             {% csrf_token %}
             <input class='d-none' name="event_name" value="SITUATIONAL ANTAKSHARI"/>
