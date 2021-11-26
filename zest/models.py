@@ -24,7 +24,12 @@ COLLEGE_CHOICES =	(
   ('SRMS CETR', 'SRMS CETR'),
   ('SRMS UNNAO', 'SRMS UNNAO'),
   ('SRMS IMS', 'SRMS IMS'),
-  ('SRMS NURSING', 'SRMS NURSING'),
+  ('SRMS IBS', 'SRMS IBS'),
+  ('SRMS NURSING, BAREILLY', 'SRMS NURSING, BAREILLY'),
+  ('SRMS NURSING, UNNAO', 'SRMS NURSING, UNNAO'),
+  ('SRMS IPS, BAREILLY', 'SRMS IPS, BAREILLY'),
+  ('SRMS IPS, UNNAO', 'SRMS IPS, UNNAO'),
+  ('SRMS LAW', 'SRMS LAW'),
   ('OTHER', 'OTHER'),
 )
 COURSE_CHOICES = (
@@ -33,6 +38,16 @@ COURSE_CHOICES = (
   ('B.Pharma', 'B.Pharma'),
   ('M.Pharma', 'M.Pharma'),
   ('MBA', 'MBA'),
+  ('MCA', 'MCA'),
+  ('PGDM', 'PGDM'),
+  ('BBA', 'BBA'),
+  ('GNM', 'GNM'),
+  ('B.A. LL.B', 'B.A. LL.B'),
+  ('LL.B', 'LL.B'),
+  ('B.Sc Nursing', 'B.Sc Nursing'),
+  ('M.Sc Nursing', 'M.Sc Nursing'),
+  ('B.COM(Hons.)', 'B.COM(Hons.)'),
+  ('OTHERS', 'OTHERS'),
 )
 BRANCH_CHOICES = (
 	('CSE', 'CSE'),
@@ -40,7 +55,7 @@ BRANCH_CHOICES = (
 	('EC', 'EC'),
 	('EN', 'EN'),
 	('ME', 'ME'),
-	('NA', 'NA'),
+	('OTHERS', 'OTHERS'),
 )
 BATCH_CHOICES = (
 	('2021', '2021'),
@@ -48,6 +63,9 @@ BATCH_CHOICES = (
 	('2019', '2019'),
 	('2018', '2018'),
 	('2017', '2017'),
+	('2016', '2016'),
+	('2015', '2015'),
+	('2014', '2014'),
 )
 GENDER_CHOICES = (
 	('MALE', 'MALE'),
