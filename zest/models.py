@@ -20,7 +20,7 @@ def validate_name(value):
 
 
 COLLEGE_CHOICES =	(
-	('SRMS CET', 'SRMS CET'),
+  ('SRMS CET', 'SRMS CET'),
   ('SRMS CETR', 'SRMS CETR'),
   ('SRMS UNNAO', 'SRMS UNNAO'),
   ('SRMS IMS', 'SRMS IMS'),
@@ -37,6 +37,7 @@ COURSE_CHOICES = (
   ('M.Tech.', 'M.Tech.'),
   ('B.Pharma', 'B.Pharma'),
   ('M.Pharma', 'M.Pharma'),
+  ('Paramedical', 'Paramedical'),
   ('MBA', 'MBA'),
   ('MCA', 'MCA'),
   ('PGDM', 'PGDM'),
@@ -55,6 +56,12 @@ BRANCH_CHOICES = (
 	('EC', 'EC'),
 	('EN', 'EN'),
 	('ME', 'ME'),
+    ('BOPTOM', 'BOPTOM'),
+    ('BPT', 'BPT'),
+    ('BOTT', 'BOTT'),
+    ('BMLT', 'BMLT'),
+    ('BRIT', 'BRIT'),
+    ('CTMRI', 'CTMRI'),
 	('OTHERS', 'OTHERS'),
 )
 BATCH_CHOICES = (

@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)==cdyvgr)178iwy_msn_%4=xqz3p486tvv)dkntgjfwc$gk6r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -84,7 +84,7 @@ DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.mysql',
          'NAME': 'zestrc',
-         'USER': 'zest',
+         'USER': 'root',
          'PASSWORD': 'zest',
          'HOST': 'localhost',
          'PORT': '3306',

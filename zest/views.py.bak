@@ -227,10 +227,6 @@ def add_event_in_tid(request):
       if pid_count != 4:
         messages.error(request,'Team should have only 2 member')
         return render(request,'zest/register_event.html')
-    elif event_name == 'MIME':
-      if pid_count < 6 and pid_count > 15:
-        messages.error(request,'Team Member shuold be between 6 to 15')
-        return render(request,'zest/register_event.html')
   except:
     messages.error(request, 'Either tid is incorrect or it is not registered.')
     return render(request,'zest/register_event.html')

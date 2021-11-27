@@ -62,7 +62,6 @@
                     {{pid.id}}({{pid.name}}), 
                   {% endfor %}  
                   </td>
-                  </td>
                 </tr>
               </tbody>
             </table>
