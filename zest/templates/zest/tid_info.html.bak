@@ -59,8 +59,9 @@
                   <th class="align-middle py-2" width=10% scope="row">PID</th>
                   <td class="align-left py-2" width=30%>
                   {% for pid in tid_obj.pid.all %}
-                    {{pid.id}}({{pid.name}}), 
+                    <b>{{pid.id}}</b>( {{pid.name}},&emsp;{{pid.college_name}},&emsp;{{pid.batch}},&emsp;{{pid.course}},&emsp;{{pid.branch}})<br>
                   {% endfor %}  
+                  </td>
                   </td>
                 </tr>
               </tbody>
