@@ -270,12 +270,12 @@ def event_summary(request):
 def event_details(request,id):
   individual_event_obj =Individual_Event.objects.get(id=id)
   pids = individual_event_obj.pid.all()
-  return render(request,'zest/event_details.html', {'pids': pids})
+  return render(request,'zest/event_details.html', {'pids': pids,'individual_event_obj':individual_event_obj})
   
 @login_required(login_url='/zest/login/')
 def t_event_details(request,id):
   team_event_obj = Team_Event.objects.get(id=id)
   tids = team_event_obj.tid.all()
-  return render(request,'zest/t_event_details.html', {'tids': tids})
+  return render(request,'zest/t_event_details.html', {'tids': tids,'team_event_obj':team_event_obj})
   
    

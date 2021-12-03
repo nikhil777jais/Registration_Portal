@@ -14,9 +14,9 @@
             <th scope="col" style="width:10%">PID</th>
             <th scope="col" style="width:25%">Participant Name</th>
             <th scope="col" style="width:25%">College Name</th>
-            <th scope="col" style="width:10%">Batch</th>
+            <th scope="col" style="width:15%">Batch</th>
             <th scope="col" style="width:15%">Course</th>
-            <th scope="col" style="width:15%">Branch</th>
+            <th scope="col" style="width:10%">Branch</th>
           </tr>
         </thead>
         <tbody>
