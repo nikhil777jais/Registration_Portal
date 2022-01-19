@@ -6,7 +6,7 @@
 {% block content %}
 <div class="container">
   <div class="row justify-content-center mt-5">
-	<div class="col-md-4">
+	<div class="col-md-5">
         <form action="{% url 'search_pid_id' %}" method="POST" class="form-inline" novalidate>
         {% csrf_token %}
 			<input class="form-control mx-sm-2" type="search" placeholder="Enter PID Number" name="id" aria-label="Search">

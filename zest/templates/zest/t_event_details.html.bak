@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row rounded mt-4 bg-warning">
     <div class="col-md-12 p-2 text-center">
-      <h4>{{individual_event_obj.event_name}} DETAILS</h4>
+      <h4>{{team_event_obj.event_name}} DETAILS</h4>
     </div>
   </div>
   <div class="row mt-4">
@@ -11,23 +11,21 @@
       <table class="table table-bordered table-hover bg-white">
         <thead>
           <tr class="text-center">
-            <th scope="col" style="width:10%">PID</th>
-            <th scope="col" style="width:25%">Participant Name</th>
+            <th scope="col" style="width:10%">TID</th>
             <th scope="col" style="width:25%">College Name</th>
-            <th scope="col" style="width:10%">Batch</th>
-            <th scope="col" style="width:15%">Course</th>
-            <th scope="col" style="width:15%">Branch</th>
+            <th scope="col" style="width:65%">TID details</th>
           </tr>
         </thead>
         <tbody>
-          {% for pid in pids %}
+          {% for tid in tids %}
           <tr>
-            <td class="align-middle text-center p-2"><b>{{pid.id}}</b></td>
-            <td class="text-center align-middle p-2">{{pid.name}}</td>
-            <td class="align-middle text-center p-2">{{pid.college_name}}</td>
-            <td class="align-middle text-center p-2">{{pid.batch}}</td>
-            <td class="align-middle text-center p-2">{{pid.course}}</td>
-            <td class="align-middle text-center p-2">{{pid.branch}}</td>
+            <td class="align-middle text-center p-2">{{tid.id}}</td>
+            <td class="align-middle text-center p-2">{{tid.college_name}}</td>
+			<td class="align-middle text-left p-2">
+			{% for pid in tid.pid.all %}
+				<b>{{pid.id}}</b> ( {{pid.name}},&emsp;{{pid.college_name}},&emsp;{{pid.batch}},&emsp;{{pid.course}},&emsp;{{pid.branch}})<br>
+			{% endfor %}
+			</td>
           </tr>
           {% endfor %}
         </tbody>
