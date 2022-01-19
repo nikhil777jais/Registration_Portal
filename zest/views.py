@@ -94,6 +94,21 @@ def search_pid(request):
     return render(request,'zest/pid_info.html',)
 
 @login_required(login_url='/zest/login/')
+def search_pid_id(request):
+  id = request.POST.get('id', False)
+  if id:
+    try:
+      pid  = Pid.objects.filter(id=id)[0]
+      if not pid:
+        messages.error(request, 'Either PID is incorrect or is not registered.')
+      return render(request,'zest/pid_info.html', {'pid':pid})
+    except Exception as e:
+      messages.error(request, 'Either PID is incorrect or is not registered.')
+      return render(request,'zest/pid_info.html',)     
+  else:
+    return render(request,'zest/pid_info.html',)
+
+@login_required(login_url='/zest/login/')
 def search_pid_by_roll(request, roll_no):
   if roll_no:
     pid  = Pid.objects.filter(roll_no=roll_no)[0]
